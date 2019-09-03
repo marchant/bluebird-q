@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "test": "jshint index.js && jasmine-node --captureExceptions spec && promises-aplus-tests index.js",
-    "prepublish": "browserify index.js -o q.js -s Q --dg=false"
+    "prepublish": "browserify index.js -o q.js -s Q --dg=false",
+    "postinstall": "browserify index.js -o q.js -s Q --dg=false"
   },
   "keywords": [
     "bluebird",
