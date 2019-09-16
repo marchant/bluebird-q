@@ -389,6 +389,10 @@ Promise.prototype.progress = function (progressed) {
     return this.then(void 0, void 0, progressed);
 };
 
+Promise.prototype.dispatch = function(op, args) {
+    return this[op].apply(this,args);
+};
+
 var defaultScheduler = scheduler;
 Object.defineProperty(Q, "nextTick", {
     get: function() {
