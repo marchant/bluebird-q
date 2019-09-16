@@ -177,12 +177,12 @@ var _handlePromiseWithArrayValue = function(that) {
 		return that.then(function(aPromises) {
 			return _handlePromiseWithArrayValue(aPromises);
 		});
-	} 	
+	}
 	throw new Error("that must be a promise or an array");
 };
 
 Promise.prototype.allSettled = function() {
-    return _handlePromiseWithArrayValue(this).then(function(oResult) { 
+    return _handlePromiseWithArrayValue(this).then(function(oResult) {
         var aPromState = [];
         for (var i = 0; i < oResult.length; i++) {
             var inspection = oResult[i];
@@ -199,7 +199,7 @@ Promise.prototype.allSettled = function() {
 };
 
 Promise.prototype.allResolved = function() {
-    return _handlePromiseWithArrayValue(this).then(function(oResult) { 
+    return _handlePromiseWithArrayValue(this).then(function(oResult) {
         var aPromState = [];
         for (var i = 0; i < oResult.length; i++) {
             var inspection = oResult[i];
@@ -385,6 +385,9 @@ Promise.prototype.done = function (fulfilled, rejected, progress) {
     promise.then(void 0, onUnhandledError);
 };
 
+Promise.prototype.progress = function (progressed) {
+    return this.then(void 0, void 0, progressed);
+};
 
 var defaultScheduler = scheduler;
 Object.defineProperty(Q, "nextTick", {
