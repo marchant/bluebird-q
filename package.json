@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "test": "jshint index.js && jasmine-node --captureExceptions spec && promises-aplus-tests index.js",
+    "postinstall": "node browserify index.js -o q.js -s Q --dg=false",
     "prepublish": "browserify index.js -o q.js -s Q --dg=false"
   },
   "keywords": [
