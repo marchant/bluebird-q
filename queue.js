@@ -2,7 +2,7 @@
 //var Q = require("bluebird-q");
 if (typeof Q === "undefined" && typeof require !== "undefined") {
     // For Node compatibility.
-    global.Q = require("../index.js");
+    global.Q = require("./index.js");
     Q.longStackSupport = true;
 }
 
