@@ -164,6 +164,39 @@ Q.getBluebirdPromise = function() {
 	return Promise;
 };
 
+
+/**
+ * sends a message to a value in a future turn
+ * @param object* the recipient
+ * @param op the name of the message operation, e.g., "when",
+ * @param args further arguments to be forwarded to the operation
+ * @returns result {Promise} a promise for the result of the operation
+ */
+Q.dispatch = dispatch;
+function dispatch(object, op, args) {
+    return Q(object).dispatch(op, args);
+}
+
+/**
+ * Annotates an object such that it will never be
+ * transferred away from this process over any promise
+ * communication channel.
+ * @param object
+ * @returns promise a wrapping of that object that
+ * additionally responds to the "isDef" message
+ * without a rejection.
+ */
+Q.master = master;
+function master(object) {
+    return Promise({
+        "isDef": function () {}
+    }, function fallback(op, args) {
+        return dispatch(object, op, args);
+    }, function () {
+        return Q(object).inspect();
+    });
+}
+
 Promise.prototype.valueOf = Promise.prototype.value;
 
 // used as a helper for allSettled and allResolved functions
