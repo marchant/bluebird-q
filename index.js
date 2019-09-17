@@ -314,8 +314,11 @@ Promise.prototype.nmcall = function(name) {
 
 Promise.prototype.mapply = Promise.prototype.post = function(methodName, args) {
     if (!methodName) return this.fapply(args);
-    if(!args || (args && typeof args.unshift !== "function")) {
+    if(!args) {
         console.log("Q Promise called mapply/post with methodName:",methodName,", args: ",args);
+    }
+    if(args && typeof args.unshift !== "function") {
+        console.log("Q Promise called mapply/post with methodName:",methodName,", no args array: ",args);
     }
 
     args.unshift(methodName);
