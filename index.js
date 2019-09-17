@@ -411,7 +411,12 @@ Promise.prototype.progress = function (progressed) {
 };
 
 Promise.prototype.dispatch = function(op, args) {
-    return this[op].apply(this,args);
+    if(op === "post") {
+        return this[op].apply(this,args.shift(),args);
+    }
+    else {
+        return this[op].apply(this,args);
+    }
 };
 
 var defaultScheduler = scheduler;
