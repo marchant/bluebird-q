@@ -412,7 +412,7 @@ Promise.prototype.progress = function (progressed) {
 
 Promise.prototype.dispatch = function(op, args) {
     if(op === "post") {
-        return this[op].apply(this,args.shift(),args);
+        return this[op].apply(this,[args.shift(),args]);
     }
     else {
         return this[op].apply(this,args);
