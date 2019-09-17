@@ -176,7 +176,7 @@ Q.getBluebirdPromise = function() {
  */
 Q.master = master;
 function master(object) {
-    var promise = Promise.resolve(object);
+    var promise = Q.resolve(object);
     promise.isDef = function () {};
     return promise;
 }
